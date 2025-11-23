@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шаг к цели</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .blur-circle {
+            width: 400px;
+            height: 400px;
+            filter: blur(120px);
+        }
+    </style>
+</head>
+<body class="relative bg-white min-h-screen overflow-hidden">
+    <!-- Красный круг на фоне в правом верхнем углу -->
+    <div class="absolute top-[-150px] right-[-150px] z-0">
+        <div class="blur-circle rounded-full bg-red-400 opacity-150"></div>
+    </div>
+
+    <!-- Синий круг на фоне в левом нижнем углу -->
+    <div class="absolute bottom-[-150px] left-[-150px] z-0">
+        <div class="blur-circle rounded-full bg-blue-400 opacity-150"></div>
+    </div>
+
+    <!-- Навигационная панель -->
+    <header>
+        <nav>
+
+        </nav>
+    </header>
+
+    <!-- Основная часть сайта -->
+    <main>
+
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+
+    </footer>
+</body>
+<script type="module" src="../Backend/index.js"></script>
+</html>
