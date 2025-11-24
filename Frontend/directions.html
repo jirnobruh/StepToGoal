@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Шаг к цели — Выбор направления</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/directions.css">
+</head>
+<body class="relative bg-white min-h-screen flex flex-col overflow-x-hidden font-cakra">
+
+<!-- Навигационная панель -->
+<header class="relative z-10 w-full px-6 py-4">
+    <nav class="flex items-center justify-between max-w-screen mx-auto">
+        <!-- Левая часть -->
+        <div class="flex items-center gap-4">
+            <!-- Меню (три полоски) -->
+            <button id="menu-toggle" class="w-8 h-5 flex flex-col justify-between">
+                <span class="block h-1 bg-gray-800 rounded"></span>
+                <span class="block h-1 bg-gray-800 rounded"></span>
+                <span class="block h-1 bg-gray-800 rounded"></span>
+            </button>
+
+            <!-- Череп с лампочкой -->
+            <button>
+                <img src="../images/icon-skull.svg" alt="Модули" class="w-15 h-15" />
+            </button>
+
+            <!-- Кнопка "модули" -->
+            <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-transparent hover:bg-gray-100 transition">
+                модули
+            </button>
+        </div>
+
+        <!-- Центр -->
+        <div class="text-7xl font-bold font-cakra text-gray-800">
+            ШАГ К ЦЕЛИ
+        </div>
+
+        <!-- Правая часть -->
+        <div class="flex items-center gap-4">
+            <!-- Кнопка "подписка" -->
+            <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-white hover:bg-gray-100 transition">
+                подписка
+            </button>
+
+            <!-- Иконка пользователя -->
+            <button>
+                <img src="../images/user-black.svg" alt="Профиль" class="w-13 h-13" />
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- Боковое меню и оверлей (если используешь) — можно скопировать из index.html -->
+<div id="side-menu" class="fixed top-0 left-0 w-64 h-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6 space-y-4 text-lg">
+        <div class="font-semibold text-xl mb-2">Навигация:</div>
+        <ul class="space-y-2">
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">· Выбор направления</button></li>
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">· Выбор дисциплин</button></li>
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">· Выбор тем</button></li>
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">Готовый набор карточек</button></li>
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">Практика</button></li>
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">Отзывы</button></li>
+            <li><button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">Обратная связь</button></li>
+        </ul>
+    </div>
+</div>
+<div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
+
+<!-- Контент страницы -->
+<main class="flex-1 flex flex-col items-center justify-start w-full">
+    <div class="w-full max-w-6xl px-6 py-12">
+
+        <!-- Заголовок -->
+        <h1 class="page-title text-4xl md:text-5xl font-bold text-gray-800 text-center mb-10">ВЫБОР НАПРАВЛЕНИЯ</h1>
+
+        <!-- Область с кнопками -->
+        <div class="directions-area">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Кнопки: каждая — button для интерактивности -->
+                <button class="dir-btn text-left" data-direction="sociology" aria-label="социология">
+                    <div class="text-xl md:text-2xl">социология</div>
+                    <div class="mt-2 text-sm text-gray-700">Краткое описание или подсказка</div>
+                </button>
+
+                <button class="dir-btn text-left" data-direction="journalism" aria-label="журналистика">
+                    <div class="text-xl md:text-2xl">журналистика</div>
+                    <div class="mt-2 text-sm text-gray-700">Краткое описание или подсказка</div>
+                </button>
+
+                <button class="dir-btn text-left" data-direction="philology" aria-label="филология">
+                    <div class="text-xl md:text-2xl">филология</div>
+                    <div class="mt-2 text-sm text-gray-700">Краткое описание или подсказка</div>
+                </button>
+
+                <button class="dir-btn text-left" data-direction="psychology" aria-label="психология">
+                    <div class="text-xl md:text-2xl">психология</div>
+                    <div class="mt-2 text-sm text-gray-700">Краткое описание или подсказка</div>
+                </button>
+
+                <button class="dir-btn text-left" data-direction="regional-studies" aria-label="зарубежное регионоведение">
+                    <div class="text-xl md:text-2xl">зарубежное регионоведение</div>
+                    <div class="mt-2 text-sm text-gray-700">Краткое описание или подсказка</div>
+                </button>
+
+                <button class="dir-btn text-left" data-direction="linguistics" aria-label="лингвистика">
+                    <div class="text-xl md:text-2xl">лингвистика</div>
+                    <div class="mt-2 text-sm text-gray-700">Краткое описание или подсказка</div>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- (Опционально) Подвал можно взять из index.html -->
+<footer class="relative z-10 w-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra px-6 py-8 mt-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+            <h2 class="text-2xl font-bold">ШАГ К ЦЕЛИ</h2>
+            <p class="mt-2 text-base max-w-md">Карточки для эффективного запоминания и освоения теории. Учись быстрее, запоминай лучше.</p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-4 text-base">
+            <a href="#" class="hover:underline">О проекте</a>
+            <a href="#" class="hover:underline">Контакты</a>
+            <a href="#" class="hover:underline">Политика конфиденциальности</a>
+        </div>
+    </div>
+</footer>
+</body>
+<script type="module" src="../Backend/directions.js"></script>
+</html>
