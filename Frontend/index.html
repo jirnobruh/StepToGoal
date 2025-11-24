@@ -110,20 +110,18 @@
          class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
 
     <!-- Основная часть сайта -->
-    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-4">
-        <section class="relative w-full max-w-7xl h-dvh overflow-hidden flex items-center justify-between px-8">
+    <main class="relative z-10 flex-1 flex flex-col items-center px-4">
+        <section id="hero" class="page-section">
             <!-- Текст слева -->
-            <div class="w-[55%] z-10">
-                <p class="text-3xl leading-relaxed text-gray-800 font-cakra">
+            <div class="w-[52%] z-10">
+                <p class="text-4xl leading-relaxed text-gray-800 font-cakra">
                     «Шаг к цели» — это сайт, на котором собраны карточки, предназначенные для эффективного запоминания и освоения теории. Наш проект станет отличным помощником для студентов и не только, позволяя им значительно сократить время, затрачиваемое на учёбу, и улучшить качество запоминания.
                 </p>
             </div>
 
-            <!-- Лестница справа -->
-            <div class="absolute top-0 bottom-0 right-[5%] w-[39%] pointer-events-none">
-                <img src="../images/Ladder.svg"
-                     alt="Лестница"
-                     class="h-full w-full object-cover" />
+            <!-- Лестница справа: обёртка + img -->
+            <div class="ladder-wrap" aria-hidden="true">
+                <img src="../images/Ladder.svg" alt="Лестница" />
             </div>
         </section>
     </main>

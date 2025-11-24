@@ -12,3 +12,50 @@
     height: 700px;
     filter: blur(160px);
 }
+/* Контейнер секции: будет получать min-height через JS */
+.page-section {
+    position: relative;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    overflow: hidden; /* ОЧЕНЬ важно: обрезает лестницу */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Обёртка лестницы */
+.ladder-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 42%;
+    overflow: hidden; /* обрезаем всё, что выходит */
+    pointer-events: none;
+}
+
+/* Изображение лестницы: высота = высоте секции, без "проблесков" */
+.ladder-wrap img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: cover; /* заполняет по высоте, лишнее обрезается */
+    object-position: right center;
+    display: block;
+}
+
+
+/* Если нужно чуть сильнее "подрезать" — увеличить height до 130% */
+/* Сброс отступов и базовые правила */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; padding: 0; }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* вертикальная прокрутка разрешена */
+}
