@@ -6,7 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../styles/main.css">
 </head>
-<body class="relative bg-white min-h-screen overflow-hidden">
+<body class="relative bg-white min-h-screen flex flex-col overflow-hidden">
     <!-- Красный круг -->
     <div class="absolute top-[-250px] right-[-250px] z-0">
         <div class="blur-circle rounded-full" style="background-color: #4D0B19;"></div>
@@ -110,20 +110,42 @@
          class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
 
     <!-- Основная часть сайта -->
-    <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
-        <!-- Блок с лестницей -->
-        <section class="relative w-full max-w-5xl h-dvh overflow-hidden">
-            <div class="absolute top-0 bottom-0 right-[5%] w-[39%]">
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-4">
+        <section class="relative w-full max-w-7xl h-dvh overflow-hidden flex items-center justify-between px-8">
+            <!-- Текст слева -->
+            <div class="w-[55%] z-10">
+                <p class="text-3xl leading-relaxed text-gray-800 font-cakra">
+                    «Шаг к цели» — это сайт, на котором собраны карточки, предназначенные для эффективного запоминания и освоения теории. Наш проект станет отличным помощником для студентов и не только, позволяя им значительно сократить время, затрачиваемое на учёбу, и улучшить качество запоминания.
+                </p>
+            </div>
+
+            <!-- Лестница справа -->
+            <div class="absolute top-0 bottom-0 right-[5%] w-[39%] pointer-events-none">
                 <img src="../images/Ladder.svg"
                      alt="Лестница"
-                     class="h-full w-full object-cover pointer-events-none" />
+                     class="h-full w-full object-cover" />
             </div>
         </section>
     </main>
 
     <!-- Подвал сайта -->
-    <footer>
+    <footer class="relative z-10 w-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra px-6 py-8 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <!-- Левая часть -->
+            <div>
+                <h2 class="text-2xl font-bold">ШАГ К ЦЕЛИ</h2>
+                <p class="mt-2 text-base max-w-md">
+                    Карточки для эффективного запоминания и освоения теории. Учись быстрее, запоминай лучше.
+                </p>
+            </div>
 
+            <!-- Правая часть -->
+            <div class="flex flex-col md:flex-row gap-4 text-base">
+                <a href="#" class="hover:underline">О проекте</a>
+                <a href="#" class="hover:underline">Контакты</a>
+                <a href="#" class="hover:underline">Политика конфиденциальности</a>
+            </div>
+        </div>
     </footer>
 </body>
 <script type="module" src="../Backend/index.js"></script>
