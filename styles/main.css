@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Cakra';
+    src: url('../fonts/Cakra-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.font-cakra {
+    font-family: 'Cakra', sans-serif;
+}
+.blur-circle {
+    width: 700px;
+    height: 700px;
+    filter: blur(160px);
+}

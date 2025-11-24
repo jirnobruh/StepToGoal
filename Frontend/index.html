@@ -4,40 +4,119 @@
     <meta charset="UTF-8">
     <title>Шаг к цели</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .blur-circle {
-            width: 400px;
-            height: 400px;
-            filter: blur(120px);
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body class="relative bg-white min-h-screen overflow-hidden">
-    <!-- Красный круг на фоне в правом верхнем углу -->
-    <div class="absolute top-[-150px] right-[-150px] z-0">
-        <div class="blur-circle rounded-full bg-red-400 opacity-150"></div>
+    <!-- Красный круг -->
+    <div class="absolute top-[-250px] right-[-250px] z-0">
+        <div class="blur-circle rounded-full" style="background-color: #4D0B19;"></div>
     </div>
 
-    <!-- Синий круг на фоне в левом нижнем углу -->
-    <div class="absolute bottom-[-150px] left-[-150px] z-0">
-        <div class="blur-circle rounded-full bg-blue-400 opacity-150"></div>
+    <!-- Синий круг -->
+    <div class="absolute bottom-[-250px] left-[-250px] z-0">
+        <div class="blur-circle rounded-full" style="background-color: #5E657B;"></div>
     </div>
 
     <!-- Навигационная панель -->
-    <header>
-        <nav>
+    <header class="relative z-10 w-full px-6 py-4">
+        <nav class="flex items-center justify-between max-w-screen mx-auto">
+            <!-- Левая часть -->
+            <div class="flex items-center gap-4">
+                <!-- Меню (три полоски) -->
+                <button id="menu-toggle" class="w-8 h-5 flex flex-col justify-between">
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                </button>
 
+                <!-- Череп с лампочкой -->
+                <button>
+                    <img src="../images/icon-skull.svg" alt="Модули" class="w-15 h-15" />
+                </button>
+
+                <!-- Кнопка "модули" -->
+                <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-transparent hover:bg-gray-100 transition">
+                    модули
+                </button>
+            </div>
+
+            <!-- Центр -->
+            <div class="text-7xl font-bold font-cakra text-gray-800">
+                ШАГ К ЦЕЛИ
+            </div>
+
+            <!-- Правая часть -->
+            <div class="flex items-center gap-4">
+                <!-- Кнопка "подписка" -->
+                <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-white hover:bg-gray-100 transition">
+                    подписка
+                </button>
+
+                <!-- Иконка пользователя -->
+                <button>
+                    <img src="../images/icon-user.svg" alt="Профиль" class="w-13 h-13" />
+                </button>
+            </div>
         </nav>
     </header>
+
+    <!-- Боковое меню -->
+    <div id="side-menu"
+         class="fixed top-0 left-0 w-64 h-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6 space-y-4 text-lg">
+            <div class="font-semibold text-xl mb-2">Навигация:</div>
+            <ul class="space-y-2">
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        · Выбор направления
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                    · Выбор дисциплин
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        · Выбор тем
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Готовый набор карточек
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Практика
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Отзывы
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Обратная связь
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Затемнение фона при открытом меню -->
+    <div id="menu-overlay"
+         class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
 
     <!-- Основная часть сайта -->
     <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <!-- Блок с лестницей -->
-        <section class="relative w-full max-w-5xl h-screen overflow-hidden">
+        <section class="relative w-full max-w-5xl h-dvh overflow-hidden">
             <div class="absolute top-0 bottom-0 right-[5%] w-[39%]">
                 <img src="../images/Ladder.svg"
                      alt="Лестница"
-                     class="h-full w-full object-cover" />
+                     class="h-full w-full object-cover pointer-events-none" />
             </div>
         </section>
     </main>
