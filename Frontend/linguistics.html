@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Лингвистика — Шаг к цели</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/journalism.css">
+</head>
+<body class="relative bg-white min-h-screen font-cakra overflow-x-hidden">
+
+<!-- Фоновые круги -->
+<div class="page-bg-wrapper" style="position:relative; overflow:hidden;">
+    <div class="bg-circle circle-top-right"></div>
+    <div class="bg-circle circle-bottom-left"></div>
+
+    <!-- Навигация (копия из index.html) -->
+    <header class="relative z-20 w-full px-6 py-4">
+        <nav class="flex items-center justify-between max-w-screen mx-auto">
+            <div class="flex items-center gap-4">
+                <button id="menu-toggle" class="w-8 h-5 flex flex-col justify-between" aria-label="Открыть меню">
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                </button>
+
+                <button aria-label="Модули">
+                    <img src="../images/icon-skull.svg" alt="" class="w-10 h-10" />
+                </button>
+
+                <button class="px-6 py-2 border border-gray-800 text-gray-800 rounded-md bg-transparent hover:bg-gray-100 transition">
+                    модули
+                </button>
+            </div>
+
+            <a href="index.html" class="text-3xl md:text-4xl font-bold text-gray-800 no-underline">ШАГ К ЦЕЛИ</a>
+
+            <div class="flex items-center gap-4">
+                <button class="px-6 py-2 border border-gray-800 text-gray-800 rounded-md bg-white hover:bg-gray-100 transition">подписка</button>
+                <button aria-label="Профиль"><img src="../images/user-black.svg" alt="" class="w-10 h-10" /></button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-bg-wrapper min-h-screen flex flex-col" style="position:relative; overflow:hidden;">
+
+    <!-- Контент -->
+    <main class="page-wrap relative z-20 flex-1 flex items-start justify-center px-6 py-12">
+        <div class="w-full max-w-5xl">
+
+            <!-- Верхняя строка: кнопка назад + название -->
+            <div class="flex items-center gap-4 mb-4">
+                <button id="back-btn" class="back-btn" aria-label="Назад">
+                    <img src="../images/Arrow.svg" alt="Назад" />
+                </button>
+
+                <div>
+                    <div class="direction-title text-2xl font-semibold">ЛИНГВИСТИКА</div>
+                    <div class="direction-subtitle text-lg md:text-xl mt-1">«Лингвистика»</div>
+                </div>
+            </div>
+
+            <!-- Блок Тем (вертикально, один столбец) -->
+            <section class="mt-8">
+                <h2 class="text-xl font-semibold mb-4">Темы</h2>
+
+                <div class="topics-list">
+                    <a href="">иностранные языки и культуры стран изучаемых языков</a>
+                    <a href="">теория иностранных языков</a>
+                    <a href="">перевод и переводоведение</a>
+                    <a href="">теория межкультурной коммуникации</a>
+                    <a href="">информационно-коммуникационные технологии</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- (Опционально) Подвал -->
+    <footer class="relative z-10 w-full bg-[#E6F0FF] text-[#1E2A3A] px-6 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto text-sm text-[#1E2A3A]">© ШАГ К ЦЕЛИ</div>
+    </footer>
+    </div>
+</div>
+</body>
+<script type="module" src="../Backend/journalism.js"></script>
+</html>

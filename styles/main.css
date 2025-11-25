@@ -59,3 +59,15 @@ body {
     flex-direction: column;
     overflow-x: hidden; /* вертикальная прокрутка разрешена */
 }
+
+/* Главный контент занимает всё доступное пространство */
+main.page-wrap,
+main {
+    flex: 1 0 auto; /* или просто flex: 1; */
+}
+
+/* Футер не растягивается и остаётся внизу при коротком контенте */
+footer {
+    flex-shrink: 0;
+    /* при необходимости: position: relative; z-index: 10; */
+}

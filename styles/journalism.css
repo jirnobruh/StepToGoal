@@ -7,25 +7,24 @@
 }
 .font-cakra { font-family: 'Cakra', system-ui, -apple-system, "Segoe UI", Roboto, Arial; }
 
-html, body { height: 100%; }
-body { min-height: 100vh; }
-
-/* Фоновые круги */
 .bg-circle {
-    position: absolute;
+    position: fixed;        /* <-- changed */
     border-radius: 9999px;
     filter: blur(120px);
-    transform: translateZ(0);
-    z-index: 0;
     pointer-events: none;
+    z-index: 0;             /* фон под контентом */
+    transform: translateZ(0);
 }
+
+/* Правим позиции для fixed */
 .circle-top-right {
     width: 900px;
     height: 900px;
     right: -300px;
     top: -300px;
-    background-color: #9DBDB8D9; /* 8-digit hex with alpha */
+    background-color: #9DBDB8D9;
 }
+
 .circle-bottom-left {
     width: 800px;
     height: 800px;
@@ -34,8 +33,10 @@ body { min-height: 100vh; }
     background-color: #E4A5CA;
 }
 
-/* Контент поверх кругов */
+/* Убедись, что контент поверх: */
 .page-wrap { position: relative; z-index: 10; }
+footer { position: relative; z-index: 20; }
+
 
 /* Стиль заголовков и блоков */
 .direction-title { color: #5E657B; }
