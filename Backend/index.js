@@ -38,3 +38,7 @@ overlay.addEventListener('click', () => {
         ro.observe(footer);
     }
 })();
+
+document.getElementById('user-icon').addEventListener('click', () => {
+    window.location.href = 'Frontend/auth.html';
+});

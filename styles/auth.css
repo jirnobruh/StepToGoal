@@ -1,0 +1,28 @@
+:root {
+    --bg-color: #EBE6DE;
+    --dark-blue: #1E223D;
+    --input-bg: #E3E0D9;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+.btn-dark {
+    background-color: var(--dark-blue);
+}
+
+.tab-active {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.tab-inactive {
+    background-color: var(--input-bg);
+    color: var(--dark-blue);
+}
+
+.input-field {
+    background-color: var(--input-bg);
+    border: 1px solid #C4C1BA;
+}
