@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход / Регистрация — Шаг к цели</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/auth.css">
 </head>
@@ -66,21 +67,30 @@
 
         <!-- Register form -->
         <form id="register-form" class="w-full space-y-3 hidden">
-            <input type="text" placeholder="Имя" class="w-full px-4 py-2 rounded-xl input-field text-center">
-            <input type="text" placeholder="Фамилия" class="w-full px-4 py-2 rounded-xl input-field text-center">
-            <input type="text" placeholder="Отчество" class="w-full px-4 py-2 rounded-xl input-field text-center">
-            <input type="tel" placeholder="Номер телефона" class="w-full px-4 py-2 rounded-xl input-field text-center">
-            <input type="email" placeholder="Почта" class="w-full px-4 py-2 rounded-xl input-field text-center">
+            <input type="text" id="reg-first-name" placeholder="Имя" class="w-full px-4 py-2 rounded-xl input-field text-center" required>
+            <input type="text" id="reg-last-name" placeholder="Фамилия" class="w-full px-4 py-2 rounded-xl input-field text-center" required>
+            <input type="text" id="reg-middle-name" placeholder="Отчество" class="w-full px-4 py-2 rounded-xl input-field text-center">
+            <div id="reg-phone-container" class="relative">
+                <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none gap-2">
+                    🇷🇺
+                    <span class="text-gray-700 font-semibold">+7</span>
+                </div>
+                <input type="tel" id="reg-phone"
+                       class="w-full pl-24 pr-4 py-2 rounded-xl input-field focus:outline-none focus:ring-1 focus:ring-blue-900 transition text-center"
+                       placeholder="___ ___ __ __" required>
+            </div>
+            <input type="email" id="reg-email" placeholder="Почта" class="w-full px-4 py-2 rounded-xl input-field text-center">
+
+            <input type="password" id="reg-password" placeholder="Пароль" class="w-full px-4 py-2 rounded-xl input-field text-center" required>
+            <input type="password" id="reg-password-confirm" placeholder="Подтвердите пароль" class="w-full px-4 py-2 rounded-xl input-field text-center" required>
 
             <button type="submit"
                     class="w-full py-3 mt-4 text-white rounded-xl btn-dark hover:opacity-90 transition font-semibold">
                 Зарегистрироваться
             </button>
         </form>
-
     </div>
 </main>
-
 <script type="module" src="../Backend/auth-ui.js"></script>
 </body>
 </html>
