@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль — Шаг к цели</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body class="relative bg-white min-h-screen flex flex-col overflow-hidden font-cakra">
+
+    <!-- Красный круг -->
+    <div class="absolute top-[-250px] right-[-250px] z-0">
+        <div class="blur-circle rounded-full" style="background-color: #4D0B19;"></div>
+    </div>
+
+    <!-- Синий круг -->
+    <div class="absolute bottom-[-250px] left-[-250px] z-0">
+        <div class="blur-circle rounded-full" style="background-color: #5E657B;"></div>
+    </div>
+
+    <!-- Навигационная панель -->
+    <header class="relative z-10 w-full px-6 py-4">
+        <nav class="flex items-center justify-between max-w-screen mx-auto">
+            <!-- Левая часть -->
+            <div class="flex items-center gap-4">
+                <!-- Меню (три полоски) -->
+                <button id="menu-toggle" class="w-8 h-5 flex flex-col justify-between">
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-gray-800 rounded"></span>
+                </button>
+
+                <!-- Череп с лампочкой -->
+                <button>
+                    <img src="../images/icon-skull.svg" alt="Модули" class="w-15 h-15" />
+                </button>
+
+                <!-- Кнопка "модули" -->
+                <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-transparent hover:bg-gray-100 transition">
+                    модули
+                </button>
+            </div>
+
+            <!-- Центр -->
+            <a href="../index.html"
+               class="text-7xl font-bold font-cakra text-gray-800 no-underline"
+               aria-label="Профиль">
+                ШАГ К ЦЕЛИ
+            </a>
+
+            <!-- Правая часть -->
+            <div class="flex items-center gap-4">
+                <!-- Кнопка "подписка" -->
+                <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-white hover:bg-gray-100 transition">
+                    подписка
+                </button>
+
+                <!-- Иконка пользователя -->
+                <button id="user-icon">
+                    <img src="../images/icon-user.svg" alt="Профиль" class="w-13 h-13" />
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Боковое меню -->
+    <div id="side-menu"
+         class="fixed top-0 left-0 w-64 h-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6 space-y-4 text-lg">
+            <div class="font-semibold text-xl mb-2">Навигация:</div>
+            <ul class="space-y-2">
+                <li>
+                    <a href="directions.html"
+                       class="w-full block text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        · Выбор направления
+                    </a>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                    · Выбор дисциплин
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        · Выбор тем
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Готовый набор карточек
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Практика
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Отзывы
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
+                        Обратная связь
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Затемнение фона при открытом меню -->
+    <div id="menu-overlay"
+         class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
+
+    <!-- Основная часть сайта -->
+    <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Профиль</h1>
+
+            <!-- Загрузка данных -->
+            <div id="loading" class="text-center text-gray-600 py-8">
+                Загрузка...
+            </div>
+
+            <!-- Данные профиля -->
+            <div id="profile-content" class="hidden space-y-6">
+                <!-- Имя -->
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700">Имя</label>
+                    <div id="profile-first-name" class="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-800 border border-gray-200">
+                    </div>
+                </div>
+
+                <!-- Фамилия -->
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700">Фамилия</label>
+                    <div id="profile-last-name" class="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-800 border border-gray-200">
+                    </div>
+                </div>
+
+                <!-- Телефон -->
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700">Телефон</label>
+                    <div id="profile-phone" class="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-800 border border-gray-200">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700">Email</label>
+                    <div id="profile-email" class="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-800 border border-gray-200">
+                    </div>
+                </div>
+
+                <!-- Кнопка выхода -->
+                <button id="logout-btn"
+                        class="w-full py-3 mt-8 text-white rounded-xl bg-red-600 hover:bg-red-700 transition font-semibold">
+                    Выйти из аккаунта
+                </button>
+            </div>
+
+            <!-- Ошибка загрузки -->
+            <div id="error-message" class="hidden text-center text-red-600 py-8">
+                Ошибка загрузки профиля
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="relative z-10 w-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra px-6 py-8 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <!-- Левая часть -->
+            <div>
+                <h2 class="text-2xl font-bold">ШАГ К ЦЕЛИ</h2>
+                <p class="mt-2 text-base max-w-md">
+                    Карточки для эффективного запоминания и освоения теории. Учись быстрее, запоминай лучше.
+                </p>
+            </div>
+
+            <!-- Правая часть -->
+            <div class="flex flex-col md:flex-row gap-4 text-base">
+                <a href="#" class="hover:underline">О проекте</a>
+                <a href="#" class="hover:underline">Контакты</a>
+                <a href="#" class="hover:underline">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script type="module" src="../Backend/profile.js"></script>
+</html>
