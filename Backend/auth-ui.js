@@ -7,6 +7,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // --- Elements ---
 const loginForm = document.getElementById('login-form');
 const registerForm = document.getElementById('register-form');
+const recoveryForm = document.getElementById('recovery-form');
 const phoneLoginInput = document.querySelector('#phone-input input');
 const phoneRegInput = document.getElementById('reg-phone');
 const loginTabs = document.getElementById('login-tabs');
@@ -49,18 +50,29 @@ phoneRegInput.addEventListener('input', applyMask);
 // --- Переключение Вход/Регистрация ---
 btnRegister.addEventListener('click', () => {
     loginForm.classList.add('hidden');
+    recoveryForm.classList.add('hidden');
     loginTabs.classList.add('hidden');
     registerForm.classList.remove('hidden');
+    
     btnRegister.classList.replace('text-gray-400', 'text-gray-800');
     btnLogin.classList.replace('text-gray-800', 'text-gray-400');
 });
 
 btnLogin.addEventListener('click', () => {
     registerForm.classList.add('hidden');
+    recoveryForm.classList.add('hidden');
     loginForm.classList.remove('hidden');
     loginTabs.classList.remove('hidden');
+    
     btnLogin.classList.replace('text-gray-400', 'text-gray-800');
     btnRegister.classList.replace('text-gray-800', 'text-gray-400');
+    
+    // Сбрасываем форму входа
+    loginStep = 1;
+    const passInput = document.getElementById('login-password');
+    if (passInput) passInput.remove();
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.innerText = 'Войти';
 });
 
 // --- Переключение Телефон/Почта ---
@@ -83,6 +95,30 @@ const switchTab = (mode) => {
 
 tabPhone.addEventListener('click', () => switchTab('phone'));
 tabEmail.addEventListener('click', () => switchTab('email'));
+
+// --- Функция для показа сообщений ---
+const showMessage = (text, type = 'error') => {
+    const messageBox = document.getElementById('message-box');
+    messageBox.textContent = text;
+    messageBox.className = `w-full max-w-sm mb-4 p-4 rounded-lg text-sm font-medium text-center`;
+    
+    if (type === 'error') {
+        messageBox.classList.add('bg-red-100', 'text-red-700', 'border', 'border-red-300');
+    } else if (type === 'success') {
+        messageBox.classList.add('bg-green-100', 'text-green-700', 'border', 'border-green-300');
+    }
+    
+    messageBox.classList.remove('hidden');
+    
+    // Скрыть сообщение через 5 секунд
+    setTimeout(() => {
+        messageBox.classList.add('hidden');
+    }, 5000);
+};
+
+const hideMessage = () => {
+    document.getElementById('message-box').classList.add('hidden');
+};
 
 // --- Маска телефона (7999 123 45 67) ---
 phoneMaskInput.addEventListener('input', (e) => {
@@ -112,6 +148,7 @@ loginForm.addEventListener('submit', async (e) => {
         }
         submitBtn.innerText = 'Подтвердить';
         loginStep = 2;
+        hideMessage();
         return;
     }
 
@@ -134,7 +171,7 @@ loginForm.addEventListener('submit', async (e) => {
                 .single();
 
             if (profileError || !profileData?.email) {
-                alert('Пользователь с таким номером не найден');
+                showMessage('Пользователь с таким номером не найден', 'error');
                 submitBtn.disabled = false;
                 return;
             }
@@ -152,10 +189,13 @@ loginForm.addEventListener('submit', async (e) => {
         });
 
         if (error) {
-            alert('Ошибка входа: ' + error.message);
+            showMessage('Ошибка входа: ' + error.message, 'error');
             submitBtn.disabled = false;
         } else {
-            window.location.href = '../index.html';
+            showMessage('Успешный вход!', 'success');
+            setTimeout(() => {
+                window.location.href = '../Frontend/profile.html';
+            }, 1000);
         }
     }
 });
@@ -171,8 +211,14 @@ registerForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('reg-password').value;
     const passwordConfirm = document.getElementById('reg-password-confirm').value;
 
-    if (password !== passwordConfirm) return alert('Пароли не совпадают!');
-    if (password.length < 6) return alert('Пароль слишком короткий');
+    if (password !== passwordConfirm) {
+        showMessage('Пароли не совпадают!', 'error');
+        return;
+    }
+    if (password.length < 6) {
+        showMessage('Пароль слишком короткий', 'error');
+        return;
+    }
 
     const cleanPhone = getCleanPhone(phoneValue);
     // Если введена почта - используем её, если нет - наш спец. формат
@@ -191,7 +237,7 @@ registerForm.addEventListener('submit', async (e) => {
     });
 
     if (error) {
-        alert('Ошибка: ' + error.message);
+        showMessage('Ошибка: ' + error.message, 'error');
         return;
     }
 
@@ -209,11 +255,44 @@ registerForm.addEventListener('submit', async (e) => {
 
         if (profileError) {
             console.error('Ошибка создания профиля:', profileError);
-            alert('Профиль создан, но произошла ошибка при сохранении данных');
+            showMessage('Профиль создан, но произошла ошибка при сохранении данных', 'error');
             return;
         }
     }
 
-    alert('Успешно! Теперь войдите в систему.');
-    location.reload(); // Перезагрузим, чтобы сбросить формы
+    showMessage('Успешно! Теперь войдите в систему.', 'success');
+    setTimeout(() => {
+        location.reload(); // Перезагрузим, чтобы сбросить формы
+    }, 2000);
+});
+
+// --- ВОССТАНОВЛЕНИЕ ПАРОЛЯ (форма) ---
+recoveryForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const recoveryEmail = document.getElementById('recovery-email').value;
+    const submitBtn = recoveryForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+
+    const { error } = await client.auth.resetPasswordForEmail(recoveryEmail, {
+        redirectTo: `${window.location.origin}/Frontend/auth.html?type=recovery`
+    });
+
+    if (error) {
+        showMessage('Ошибка: ' + error.message, 'error');
+    } else {
+        showMessage('Письмо отправлено! Проверьте почту.', 'success');
+        recoveryForm.reset();
+    }
+    
+    submitBtn.disabled = false;
+});
+
+// --- КНОПКА "Забыли пароль?" - переходит на форму восстановления ---
+document.getElementById('forgot-password-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    loginForm.classList.add('hidden');
+    registerForm.classList.add('hidden');
+    loginTabs.classList.add('hidden');
+    recoveryForm.classList.remove('hidden');
 });

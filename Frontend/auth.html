@@ -29,6 +29,10 @@
         <button id="show-register" class="text-gray-400 hover:text-gray-600 transition">Регистрация</button>
     </div>
 
+    <!-- Сообщение об ошибке/успехе -->
+    <div id="message-box" class="w-full max-w-sm mb-4 p-4 rounded-lg hidden text-sm font-medium text-center">
+    </div>
+
     <div class="w-full max-w-sm flex flex-col items-center">
 
         <!-- Tabs -->
@@ -62,6 +66,22 @@
             <button type="submit"
                     class="w-full py-3 mt-6 text-white rounded-xl btn-dark hover:opacity-90 transition font-semibold">
                 Войти
+            </button>
+
+            <button type="button" id="forgot-password-btn"
+                    class="w-full py-2 mt-2 text-gray-600 text-sm hover:text-gray-800 transition">
+                Забыли пароль?
+            </button>
+        </form>
+
+        <!-- Recovery form -->
+        <form id="recovery-form" class="w-full space-y-4 hidden">
+            <input type="email" id="recovery-email" placeholder="Введите ваш email" 
+                   class="w-full px-4 py-3 rounded-xl input-field text-center focus:outline-none" required>
+
+            <button type="submit"
+                    class="w-full py-3 text-white rounded-xl btn-dark hover:opacity-90 transition font-semibold">
+                Отправить письмо
             </button>
         </form>
 
