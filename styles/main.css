@@ -8,48 +8,25 @@
     font-family: 'Cakra', sans-serif;
 }
 .blur-circle {
-    width: 700px;
-    height: 700px;
-    filter: blur(160px);
-}
-/* Контейнер секции: будет получать min-height через JS */
-.page-section {
-    position: relative;
-    width: 100%;
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    overflow: hidden; /* ОЧЕНЬ важно: обрезает лестницу */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 350px;
+    height: 350px;
+    filter: blur(80px);
 }
 
-/* Обёртка лестницы */
-.ladder-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 42%;
-    overflow: hidden; /* обрезаем всё, что выходит */
-    pointer-events: none;
+@media (min-width: 768px) {
+    .blur-circle {
+        width: 700px;
+        height: 700px;
+        filter: blur(160px);
+    }
 }
-
-/* Изображение лестницы: высота = высоте секции, без "проблесков" */
-.ladder-wrap img {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: auto;
-    object-fit: cover; /* заполняет по высоте, лишнее обрезается */
-    object-position: right center;
-    display: block;
+.dotted-bg {
+    background-image: radial-gradient(#1E2A3A 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    opacity: 0.15;
+    mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 70%);
 }
-
-
-/* Если нужно чуть сильнее "подрезать" — увеличить height до 130% */
 /* Сброс отступов и базовые правила */
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; padding: 0; }
@@ -57,17 +34,4 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* вертикальная прокрутка разрешена */
-}
-
-/* Главный контент занимает всё доступное пространство */
-main.page-wrap,
-main {
-    flex: 1 0 auto; /* или просто flex: 1; */
-}
-
-/* Футер не растягивается и остаётся внизу при коротком контенте */
-footer {
-    flex-shrink: 0;
-    /* при необходимости: position: relative; z-index: 10; */
 }

@@ -2,61 +2,65 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Шаг к цели</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/main.css">
 </head>
-<body class="relative bg-white min-h-screen flex flex-col overflow-hidden">
-    <!-- Красный круг -->
-    <div class="absolute top-[-250px] right-[-250px] z-0">
-        <div class="blur-circle rounded-full" style="background-color: #4D0B19;"></div>
+<body class="relative min-h-screen flex flex-col overflow-x-hidden font-cakra bg-[#EAE6DF]">
+    <!-- Декоративные размытые фоны -->
+    <div class="fixed top-[-100px] right-[-100px] md:top-[-200px] md:right-[-200px] z-0 pointer-events-none">
+        <div class="blur-circle rounded-full" style="background-color: #5D1525; opacity: 0.8;"></div>
     </div>
 
-    <!-- Синий круг -->
-    <div class="absolute bottom-[-250px] left-[-250px] z-0">
-        <div class="blur-circle rounded-full" style="background-color: #5E657B;"></div>
+    <div class="fixed top-[30%] left-[-150px] md:left-[-300px] z-0 pointer-events-none">
+        <div class="blur-circle rounded-full" style="background-color: #343E54; opacity: 0.7;"></div>
+    </div>
+
+    <div class="fixed bottom-[-100px] right-[-100px] md:bottom-[-200px] md:right-[-100px] z-0 pointer-events-none">
+        <div class="blur-circle rounded-full" style="background-color: #E6A8C8; opacity: 0.6; width: 600px; height: 600px; filter: blur(150px);"></div>
     </div>
 
     <!-- Навигационная панель -->
-    <header class="relative z-10 w-full px-6 py-4">
-        <nav class="flex items-center justify-between max-w-screen mx-auto">
+    <header class="relative z-20 w-full px-4 md:px-6 py-6">
+        <nav class="flex items-center justify-between max-w-[1440px] mx-auto flex-wrap gap-4">
             <!-- Левая часть -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 md:gap-5">
                 <!-- Меню (три полоски) -->
                 <button id="menu-toggle" class="w-8 h-5 flex flex-col justify-between">
-                    <span class="block h-1 bg-gray-800 rounded"></span>
-                    <span class="block h-1 bg-gray-800 rounded"></span>
-                    <span class="block h-1 bg-gray-800 rounded"></span>
+                    <span class="block h-1 bg-[#1E2A3A] rounded"></span>
+                    <span class="block h-1 bg-[#1E2A3A] rounded"></span>
+                    <span class="block h-1 bg-[#1E2A3A] rounded"></span>
                 </button>
 
                 <!-- Череп с лампочкой -->
-                <button>
-                    <img src="images/icon-skull.svg" alt="Модули" class="w-15 h-15" />
+                <button class="hidden sm:block">
+                    <img src="images/icon-skull.svg" alt="Модули" class="w-10 h-10 md:w-12 md:h-12" />
                 </button>
 
                 <!-- Кнопка "модули" -->
-                <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-transparent hover:bg-gray-100 transition">
+                <button class="hidden lg:block px-6 py-1.5 border border-[#1E2A3A] text-[#1E2A3A] font-cakra text-lg rounded-md bg-transparent hover:bg-[#1E2A3A] hover:text-white transition uppercase">
                     модули
                 </button>
             </div>
 
             <!-- Центр -->
             <a href="index.html"
-               class="text-7xl font-bold font-cakra text-gray-800 no-underline"
+               class="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-bold font-cakra text-[#1E2A3A] no-underline whitespace-nowrap tracking-tight leading-none"
                aria-label="Перейти на главную">
                 ШАГ К ЦЕЛИ
             </a>
 
             <!-- Правая часть -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 md:gap-5">
                 <!-- Кнопка "подписка" -->
-                <button class="px-6 py-2 border border-gray-800 text-gray-800 font-cakra rounded-md bg-white hover:bg-gray-100 transition">
+                <button class="hidden lg:block px-6 py-1.5 border border-[#1E2A3A] text-[#1E2A3A] font-cakra text-lg rounded-md bg-transparent hover:bg-[#1E2A3A] hover:text-white transition uppercase">
                     подписка
                 </button>
 
                 <!-- Иконка пользователя -->
                 <button id="user-icon">
-                    <img src="images/icon-user.svg" alt="Профиль" class="w-13 h-13" />
+                    <img src="images/icon-user.svg" alt="Профиль" class="w-10 h-10 md:w-12 md:h-12" />
                 </button>
             </div>
         </nav>
@@ -64,90 +68,124 @@
 
     <!-- Боковое меню -->
     <div id="side-menu"
-         class="fixed top-0 left-0 w-64 h-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
-        <div class="p-6 space-y-4 text-lg">
-            <div class="font-semibold text-xl mb-2">Навигация:</div>
-            <ul class="space-y-2">
-                <li>
-                    <a href="Frontend/directions.html"
-                       class="w-full block text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                        · Выбор направления
-                    </a>
-                </li>
-                <li>
-                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                    · Выбор дисциплин
-                    </button>
-                </li>
-                <li>
-                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                        · Выбор тем
-                    </button>
-                </li>
-                <li>
-                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                        Готовый набор карточек
-                    </button>
-                </li>
-                <li>
-                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                        Практика
-                    </button>
-                </li>
-                <li>
-                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                        Отзывы
-                    </button>
-                </li>
-                <li>
-                    <button class="w-full text-left px-2 py-1 rounded hover:bg-[#d0e4ff] transition">
-                        Обратная связь
-                    </button>
-                </li>
+         class="fixed top-0 left-0 w-72 h-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-[#c2d8f2]">
+            <div class="font-semibold text-xl">Навигация</div>
+            <button id="menu-close" class="text-3xl leading-none">&times;</button>
+        </div>
+        <div class="p-6 overflow-y-auto flex-1 text-lg">
+            <ul class="space-y-3">
+                <li><a href="Frontend/directions.html" class="w-full block text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">· Выбор направления</a></li>
+                <li><button class="w-full text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">· Выбор дисциплин</button></li>
+                <li><button class="w-full text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">· Выбор тем</button></li>
+                <li><button class="w-full text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">Готовый набор карточек</button></li>
+                <li><button class="w-full text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">Практика</button></li>
+                <li><button class="w-full text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">Отзывы</button></li>
+                <li><button class="w-full text-left px-3 py-2 rounded hover:bg-[#d0e4ff] transition">Обратная связь</button></li>
             </ul>
         </div>
     </div>
 
     <!-- Затемнение фона при открытом меню -->
     <div id="menu-overlay"
-         class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
+         class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden transition-opacity"></div>
 
     <!-- Основная часть сайта -->
-    <main class="relative z-10 flex-1 flex flex-col items-center px-4">
-        <section id="hero" class="page-section">
+    <main class="relative z-10 flex-1 w-full max-w-[1200px] mx-auto px-6 py-8 md:py-12 flex flex-col">
+        
+        <!-- Герой секция (текст + огромная лестница) -->
+        <section class="relative w-full flex flex-col md:flex-row mt-4 md:mt-10 lg:mt-16">
             <!-- Текст слева -->
-            <div class="w-[52%] z-10">
-                <p class="text-4xl leading-relaxed text-gray-800 font-cakra">
+            <div class="w-full md:w-[45%] lg:w-[40%] z-20 pt-4 md:pt-16">
+                <p class="text-[20px] md:text-[24px] lg:text-[28px] leading-snug md:leading-[1.4] text-[#1E2A3A] font-cakra font-medium">
                     «Шаг к цели» — это сайт, на котором собраны карточки, предназначенные для эффективного запоминания и освоения теории. Наш проект станет отличным помощником для студентов и не только, позволяя им значительно сократить время, затрачиваемое на учёбу, и улучшить качество запоминания.
                 </p>
+                <!-- Мобильные кнопки -->
+                <div class="flex gap-4 lg:hidden mt-8 flex-wrap">
+                     <button class="px-6 py-2 border border-[#1E2A3A] text-[#1E2A3A] rounded-md uppercase text-sm font-bold">модули</button>
+                     <button class="px-6 py-2 border border-[#1E2A3A] text-[#1E2A3A] rounded-md uppercase text-sm font-bold">подписка</button>
+                </div>
             </div>
 
-            <!-- Лестница справа: обёртка + img -->
-            <div class="ladder-wrap" aria-hidden="true">
-                <img src="images/Ladder.svg" alt="Лестница" />
+            <!-- Лестница справа (абсолютное позиционирование для перекрытия) -->
+            <div class="hidden md:block absolute right-[0%] top-[-50px] lg:top-[-80px] w-[40%] lg:w-[45%] xl:w-[45%] z-[-1] pointer-events-none">
+                <!-- Отрисовываем лестницу -->
+                <img src="images/Ladder.svg" alt="Лестница" class="w-full h-auto drop-shadow-2xl animate-float opacity-90" style="max-height: 800px; object-fit: contain; object-position: top right;" />
+            </div>
+
+            <!-- Мобильная лестница -->
+            <div class="w-full mt-12 flex justify-center md:hidden z-[-1] pointer-events-none">
+                <img src="images/Ladder.svg" alt="Лестница" class="w-[70%] h-auto drop-shadow-xl animate-float" />
             </div>
         </section>
+
+        <!-- Новые секции с информацией -->
+        <div class="w-full mt-24 md:mt-[150px] lg:mt-[200px] flex flex-col gap-16 md:gap-24 z-20 pb-20 relative">
+
+            <div class="absolute inset-0 z-[-1] flex justify-center items-center pointer-events-none">
+                <div class="w-[80%] h-full dotted-bg"></div>
+            </div>
+
+            <!-- Секция 1 -->
+            <section class="w-full flex justify-end">
+                <div class="w-full md:w-[65%] lg:w-[55%] text-right flex flex-col gap-6">
+                    <h2 class="text-3xl md:text-4xl lg:text-[44px] font-bold text-[#1E2A3A] uppercase tracking-wide">
+                        КТО ПРИДУМАЛ ЭТОТ МЕТОД?
+                    </h2>
+                    <p class="text-[18px] md:text-[22px] lg:text-[26px] leading-[1.4] text-[#1E2A3A] font-medium">
+                        Метод запоминания с использованием флеш-карточек (система Лейтнера, Leitner system) разработал Себастьян Лейтнер — немецкий учёный и журналист — в 1970-х годах XX века. Изначально методика предназначалась для изучения иностранных языков, но позже распространилась и на другие области знаний.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Секция 2 -->
+            <section class="w-full flex justify-start">
+                <div class="w-full md:w-[85%] lg:w-[80%] text-left flex flex-col gap-6">
+                    <h2 class="text-3xl md:text-4xl lg:text-[44px] font-bold text-[#1E2A3A] uppercase tracking-wide">
+                        КАК ЭТО РАБОТАЕТ?
+                    </h2>
+                    <div class="text-[18px] md:text-[22px] lg:text-[26px] leading-[1.4] text-[#1E2A3A] font-medium space-y-6">
+                        <p>Метод основан на принципе интервального повторения: карточки с информацией распределяют по группам в зависимости от того, насколько хорошо ученик их усвоил. Карточки делят на несколько колод — обычно от 3 до 5. В первую помещают то, что даётся труднее всего (новые или плохо запомнившиеся факты), а в последние — то, что уже хорошо известно.</p>
+                        <p>Чем лучше человек помнит информацию на карточке, тем реже её нужно повторять: например, сложные карточки просматривают ежедневно, частично усвоенные — через день, а хорошо знакомые — раз в несколько дней.</p>
+                        <p>Если удалось правильно воспроизвести данные — карточку перемещают в следующую группу с более длинным интервалом повторений. Если вспомнить не получилось — возвращают в первую группу, где материал повторяют чаще. Так система автоматически фокусирует внимание на самом трудном и помогает надёжно закрепить знания.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция 3 -->
+            <section class="w-full flex justify-end">
+                <div class="w-full md:w-[70%] lg:w-[60%] text-right flex flex-col gap-6">
+                    <h2 class="text-3xl md:text-4xl lg:text-[44px] font-bold text-[#1E2A3A] uppercase tracking-wide">
+                        ПОЧЕМУ ЭТО АКТУАЛЬНО?
+                    </h2>
+                    <p class="text-[18px] md:text-[22px] lg:text-[26px] leading-[1.4] text-[#1E2A3A] font-medium">
+                        Метод Лейтнера актуален, потому что основан на интервальных повторениях — это научно доказанный способ закрепить знания в долговременной памяти. Он универсален: подходит для изучения языков, запоминания формул, терминов и дат. Удобен за счёт гибкости — можно использовать бумажные карточки или цифровые приложения. И экономит время, фокусируя внимание на самом сложном материале.
+                    </p>
+                </div>
+            </section>
+
+        </div>
     </main>
 
     <!-- Подвал сайта -->
-    <footer class="relative z-10 w-full bg-[#E6F0FF] text-[#1E2A3A] font-cakra px-6 py-8 mt-12">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <footer class="relative z-10 w-full bg-[#E6F0FF] border-t border-[#d4cfc5] text-[#1E2A3A] font-cakra px-6 py-10 mt-auto">
+        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <!-- Левая часть -->
             <div>
-                <h2 class="text-2xl font-bold">ШАГ К ЦЕЛИ</h2>
-                <p class="mt-2 text-base max-w-md">
+                <h2 class="text-2xl md:text-3xl font-bold uppercase">ШАГ К ЦЕЛИ</h2>
+                <p class="mt-2 text-[16px] md:text-[18px] max-w-md font-medium">
                     Карточки для эффективного запоминания и освоения теории. Учись быстрее, запоминай лучше.
                 </p>
             </div>
 
             <!-- Правая часть -->
-            <div class="flex flex-col md:flex-row gap-4 text-base">
-                <a href="#" class="hover:underline">О проекте</a>
-                <a href="#" class="hover:underline">Контакты</a>
-                <a href="#" class="hover:underline">Политика конфиденциальности</a>
+            <div class="flex flex-col sm:flex-row gap-6 text-[16px] md:text-[18px] font-medium">
+                <a href="#" class="hover:text-black transition">О проекте</a>
+                <a href="#" class="hover:text-black transition">Контакты</a>
+                <a href="#" class="hover:text-black transition">Политика конфиденциальности</a>
             </div>
         </div>
     </footer>
+    <script type="module" src="Backend/index.js"></script>
 </body>
-<script type="module" src="Backend/index.js"></script>
 </html>
