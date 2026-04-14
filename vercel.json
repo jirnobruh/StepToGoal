@@ -1,4 +1,7 @@
 {
   "buildCommand": "node create-config.js",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    { "source": "/.env.local/:path*", "destination": "/404.html", "statusCode": 404 }
+  ]
 }

@@ -15,7 +15,9 @@ export const SUPABASE_URL ='${supabaseUrl}';
 export const SUPABASE_ANON_KEY = '${supabaseAnonKey}';
 `;
 
-const configPath = path.join(__dirname, 'Backend', 'config.js');
+const configDir = path.join(__dirname, '.env.local');
+fs.mkdirSync(configDir, { recursive: true });
+const configPath = path.join(configDir, 'config.js');
 fs.writeFileSync(configPath, configContent);
-console.log('✓ config.js generated successfully from environment variables');
+console.log('✓ config.js generated successfully in .env.local/ directory');
 

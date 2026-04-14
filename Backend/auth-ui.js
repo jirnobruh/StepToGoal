@@ -1,4 +1,4 @@
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from '../.env.local/config.js';
 
 // Инициализация клиента
 // Используем проверку, так как в модулях supabase может подгружаться чуть иначе
