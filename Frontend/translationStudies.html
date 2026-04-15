@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Перевод и переводоведение — Шаг к цели</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="../styles/translationStudies.css">
+</head>
+<body class="font-cakra">
+<main class="page">
+    <header class="top-bar">
+        <a class="back-link" href="linguistics.html" aria-label="Назад">
+            <img src="../images/Arrow.svg" alt="Назад">
+            <span>лингвистика</span>
+        </a>
+        <a href="profile.html" class="profile-link" aria-label="Профиль">
+            <img src="../images/user-black.svg" alt="Профиль">
+        </a>
+    </header>
+
+    <h1 class="page-title">Перевод и переводоведение</h1>
+
+    <section class="cards-area" aria-label="Карточки">
+        <button class="nav-btn nav-left" id="prev-card" aria-label="Предыдущая карточка">←</button>
+
+        <div class="flip-card" id="flip-card" role="button" tabindex="0" aria-label="Перевернуть карточку">
+            <div class="flip-card-inner" id="flip-card-inner">
+                <article class="flip-face flip-front">
+                    <p class="card-text" id="card-front-text">Текст оригинала</p>
+                    <p class="card-hint">Нажмите на карточку, чтобы перевернуть</p>
+                </article>
+                <article class="flip-face flip-back">
+                    <p class="card-text" id="card-back-text">исходное сообщение, подлежащее переводу</p>
+                    <div class="answer-actions">
+                        <button class="answer-btn wrong" id="wrong-btn" aria-label="Неверно">✖</button>
+                        <button class="answer-btn correct" id="correct-btn" aria-label="Верно">✔</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <button class="nav-btn nav-right" id="next-card" aria-label="Следующая карточка">→</button>
+    </section>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite">Верно!</div>
+<script type="module" src="../Backend/translationStudies.js"></script>
+</body>
+</html>

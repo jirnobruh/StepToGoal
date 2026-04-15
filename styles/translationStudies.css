@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'Cakra';
+    src: url('../fonts/Cakra-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #e9e7e4;
+    color: #171f59;
+}
+
+.font-cakra {
+    font-family: 'Cakra', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2.2rem 3rem 4rem;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: #5e657b;
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.back-link img {
+    width: 2.3rem;
+    height: 2.3rem;
+}
+
+.profile-link img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.page-title {
+    margin: 1.4rem 0 3rem;
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3.7rem);
+    line-height: 1.2;
+}
+
+.cards-area {
+    display: grid;
+    grid-template-columns: minmax(2.4rem, auto) minmax(420px, 860px) minmax(2.4rem, auto);
+    align-items: center;
+    gap: clamp(0.6rem, 1.6vw, 2rem);
+    margin-top: 2.2rem;
+}
+
+.flip-card {
+    perspective: 1200px;
+    cursor: pointer;
+    outline: none;
+}
+
+.flip-card-inner {
+    position: relative;
+    height: clamp(260px, 38vw, 520px);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: 3px solid #171f59;
+    border-radius: 3rem;
+    background: #efe9d8;
+    backface-visibility: hidden;
+    padding: 2rem;
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+}
+
+.card-text {
+    margin: 0;
+    max-width: 80%;
+    text-align: center;
+    font-size: clamp(1.4rem, 2.8vw, 4rem);
+    line-height: 1.2;
+}
+
+.card-hint {
+    margin: 0;
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+    opacity: 0.7;
+}
+
+.answer-actions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3.2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2.4rem;
+}
+
+.answer-btn {
+    width: clamp(62px, 10vw, 120px);
+    height: clamp(62px, 10vw, 120px);
+    border-radius: 999px;
+    border: none;
+    font-size: clamp(1.8rem, 4vw, 3.6rem);
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.answer-btn.wrong {
+    background: #fff;
+    color: #ec2a2a;
+}
+
+.answer-btn.correct {
+    background: #fff;
+    color: #3d9d40;
+}
+
+.nav-btn {
+    border: none;
+    background: transparent;
+    color: #171f59;
+    font-size: clamp(1.8rem, 4vw, 4rem);
+    cursor: pointer;
+}
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.6rem;
+    transform: translateX(-50%) translateY(22px);
+    background: #171f59;
+    color: #fff;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 1100px) {
+    .page {
+        padding: 1.5rem 1rem 3rem;
+    }
+
+    .back-link {
+        font-size: 1.35rem;
+    }
+
+    .cards-area {
+        grid-template-columns: 1fr minmax(300px, 1fr) 1fr;
+        gap: 0.7rem;
+    }
+
+    .nav-left {
+        justify-self: start;
+    }
+
+    .nav-right {
+        justify-self: end;
+    }
+}
